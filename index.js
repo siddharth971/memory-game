@@ -101,6 +101,32 @@ const initializer = () => {
 
 // Example of how to start the game
 initializer();
-//grid 
 
-gamecontainer.style.gridTemplateColumns = `repeat(${size},auto)`
+
+card = document.querySelectorAll(".card-container");
+
+
+card.forEach((card) => {
+    card.addEventListener("click", () => {
+        // if selected card is a not matched yet then only run
+
+        if (!card.classList.contains("matched")) {
+            card.classList.add("flipped");
+            //if it is the firstcard
+            if (!firstcard) {
+                //so current card will become  firstcard
+                firstcard = card;
+                firstcardValue = card.getAttribute("data-card-value")
+            }
+        } else {
+            moveCounter();
+            secondcard = card;
+            let secondCardValue = card.getAttribute("data-card-value");
+            if (firstcardValue == secondCardValue) {
+                //if both class is matched then add mathced class so thus card will be ignored
+                firstcard.classList.add("matched")
+                secondcard.classList.add("matched")
+            }
+        }
+    })
+})
