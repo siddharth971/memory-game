@@ -13,7 +13,7 @@ let secondcard = false;
 
 let items = [
     { name: "bee", image: "image/bee.png" },
-    { name: "crocodile", image: "image/crocodile.png" },
+    { name: "crocodine", image: "image/crocodine.png" },
     { name: "macow", image: "image/macow.png" },
     { name: "gorilla", image: "image/gorilla.png" },
     { name: "tiger", image: "image/tiger.png" },
@@ -124,9 +124,48 @@ card.forEach((card) => {
             let secondCardValue = card.getAttribute("data-card-value");
             if (firstcardValue == secondCardValue) {
                 //if both class is matched then add mathced class so thus card will be ignored
-                firstcard.classList.add("matched")
-                secondcard.classList.add("matched")
+                firstcard.classList.add("matched");
+                secondcard.classList.add("matched");
+                firstcard = false;
+                // increment woncount
+                wincount += 1;
+
+
+                if (wincount == Math.floor(cardvalue.length / 2)) {
+                    result.innerHTML = (`<h2>You Won</h2>
+                    <h4>Movies: ${movecount}</h4>`);
+                    StopGame();
+                }
+            }
+            else {
+                //if the card dont match
+                //flip the card back to normal
+
+                let [temoFirst, temoSecond] = [firstcard, secondcard];
+                firstcard = false;
+                secondcard = false;
+
+                let delay = setTimeout(() => {
+                    temoFirst.classList.remove("flipped");
+                    temoSecond.classList.remove("flipped");
+                }, 900);
             }
         }
     })
+});
+
+
+//start game
+
+startbtn.addEventListener("click", () => {
+    movecount = 0;
+    // controll and  button visibility 
+    control.classList.add("hide");
+    stopbtn.classList.remove("hide");
+    startbtn.classList.add("hide");
+
+    interval = setInterval(timegenerator, 1000);
+    move.innerHTML = `<span>Moves:</span>${movecount}`;
+    initializer();
+
 })
