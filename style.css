@@ -93,7 +93,7 @@ body {
     height: 80px;
 }
 
-.card-containe.flipped.card-before {
+.card-container.flipped.card-before {
     transform: rotateY(180deg);
     -webkit-transform: rotateY(180deg);
     -moz-transform: rotateY(180deg);
@@ -101,7 +101,7 @@ body {
     -o-transform: rotateY(180deg);
 }
 
-.card-containe.flipped.card-after {
+.card-container.flipped .card-after {
     transform: rotateY(0deg);
     -webkit-transform: rotateY(0deg);
     -moz-transform: rotateY(0deg);
@@ -144,8 +144,12 @@ button {
 }
 
 
-#hide {
+.hide {
     display: none;
 }
 
 
+.stats-container {
+    text-align: right;
+    margin-bottom: 1.2em;
+}
